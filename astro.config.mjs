@@ -18,5 +18,9 @@ export default defineConfig({
       // Inline small assets to reduce requests
       assetsInlineLimit: 4096,
     },
+    preview: {
+      allowedHosts: ['jiwondesignlee.up.railway.app', 'jiwondesignlee.com', 'www.jiwondesignlee.com'],
+    },
   },
 });
+
