@@ -31,7 +31,7 @@ export const ui = {
   'project.prev':      'Previous',
   // misc
   'aria.skipToMain':  'Skip to main content',
-  'meta.defaultDesc': 'Jiwon Lee — HCI researcher at KAIST.',
+  'meta.defaultDesc': 'Jiwon Lee',
 } as const;
 
 export type UIKey = keyof typeof ui;
