@@ -1,0 +1,265 @@
+---
+// Fallman, D. (2008). The interaction design research triangle of design
+// practice, design studies, and design exploration. Design Issues, 24(3), 4–18.
+//
+// 세 정점이 카테고리 필터 역할을 하고, 중앙 점은 "all" 리셋이다.
+// `data-card[data-type=...]`를 토글해 그리드를 필터링한다 — FilterBar와 동일한 계약.
+
+interface Props {
+  years?: number[];
+}
+
+const { years = [] } = Astro.props;
+---
+
+<section
+  id="filter-bar"
+  class="site-container py-12 md:py-16"
+  aria-label="Filter projects"
+>
+  <figure class="mx-auto w-full max-w-md md:max-w-lg">
+    <svg
+      viewBox="0 0 480 480"
+      role="group"
+      aria-label="Fallman's interaction design research triangle — click a vertex to filter"
+      class="w-full h-auto select-none"
+    >
+      <!-- ── 역삼각형 외곽 (꼭지점이 아래로) ──────────────────────────── -->
+      <polygon
+        points="56,72 424,72 240,400"
+        fill="none"
+        stroke="#111111"
+        stroke-opacity="0.15"
+        stroke-width="1"
+        stroke-linejoin="round"
+      />
+
+      <!-- ── 중앙 'all' 리셋 (역삼각형 무게중심) ──────────────────────── -->
+      <g
+        class="vertex-reset"
+        data-filter-type="all"
+        role="button"
+        tabindex="0"
+        aria-pressed="true"
+        aria-label="Show all projects"
+      >
+        <circle cx="240" cy="181" r="22" />
+        <text x="240" y="185" text-anchor="middle">all</text>
+      </g>
+
+      <!-- ── 좌상: Design Practices ───────────────────────────────────── -->
+      <g
+        class="vertex"
+        data-filter-type="design-practice"
+        role="button"
+        tabindex="0"
+        aria-pressed="false"
+        aria-label="Filter by Design Practices"
+      >
+        <text class="vertex-prefix" x="56" y="24" text-anchor="middle">Design</text>
+        <text class="vertex-label"  x="56" y="44" text-anchor="middle">Practices</text>
+        <circle cx="56" cy="72" r="18" />
+      </g>
+
+      <!-- ── 우상: Design Studies ─────────────────────────────────────── -->
+      <g
+        class="vertex"
+        data-filter-type="design-research"
+        role="button"
+        tabindex="0"
+        aria-pressed="false"
+        aria-label="Filter by Design Studies"
+      >
+        <text class="vertex-prefix" x="424" y="24" text-anchor="middle">Design</text>
+        <text class="vertex-label"  x="424" y="44" text-anchor="middle">Studies</text>
+        <circle cx="424" cy="72" r="18" />
+      </g>
+
+      <!-- ── 하단 꼭지점: Design Explorations ─────────────────────────── -->
+      <g
+        class="vertex"
+        data-filter-type="design-exploration"
+        role="button"
+        tabindex="0"
+        aria-pressed="false"
+        aria-label="Filter by Design Explorations"
+      >
+        <circle cx="240" cy="400" r="18" />
+        <text class="vertex-prefix" x="240" y="428" text-anchor="middle">Design</text>
+        <text class="vertex-label"  x="240" y="448" text-anchor="middle">Explorations</text>
+      </g>
+    </svg>
+
+    <figcaption class="mt-3 text-center font-mono text-[10px] text-fg-muted opacity-60">
+      Daniel Fallman (2008) · interaction design research triangle
+    </figcaption>
+  </figure>
+
+  <!-- ── 연도 칩 (보조 필터) ──────────────────────────────────────────── -->
+  {years.length > 0 && (
+    <div
+      class="mt-10 flex flex-wrap items-center justify-center gap-2"
+      role="group"
+      aria-label="Filter by year"
+    >
+      {years.map((year) => (
+        <button
+          data-filter-year={year}
+          class="filter-btn-year font-mono text-xs px-3 py-1.5 border border-fg/20 text-fg-muted
+                 hover:border-fg hover:text-fg transition-colors duration-200
+                 aria-pressed:border-fg aria-pressed:bg-fg aria-pressed:text-bg"
+          aria-pressed="false"
+        >
+          {year}
+        </button>
+      ))}
+    </div>
+  )}
+</section>
+
+<style>
+  /* ── 정점 원: 기본 / hover / focus / active(=aria-pressed) ─────────── */
+  .vertex circle,
+  .vertex-reset circle {
+    fill: #FAFAF7;          /* bg */
+    stroke: #111111;        /* fg */
+    stroke-width: 1.5;
+    transform-box: fill-box;
+    transform-origin: center;
+    transition:
+      fill 200ms ease,
+      stroke 200ms ease,
+      transform 200ms ease;
+    cursor: pointer;
+  }
+
+  .vertex,
+  .vertex-reset {
+    cursor: pointer;
+    outline: none;
+  }
+
+  .vertex:hover circle,
+  .vertex:focus-visible circle,
+  .vertex-reset:hover circle,
+  .vertex-reset:focus-visible circle {
+    fill: #111111;
+    transform: scale(1.18);
+  }
+
+  .vertex[aria-pressed='true'] circle,
+  .vertex-reset[aria-pressed='true'] circle {
+    fill: #111111;
+    transform: scale(1.18);
+  }
+
+  /* 정점 텍스트 — 두 줄: "Design" prefix (옅은 회색) + 카테고리 라벨 (강조) */
+  .vertex-prefix {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    fill: #888888;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+  }
+
+  .vertex-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    fill: #111111;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    transition: font-weight 200ms ease;
+  }
+  .vertex[aria-pressed='true'] .vertex-label {
+    font-weight: 600;
+  }
+  .vertex[aria-pressed='true'] .vertex-prefix {
+    fill: #111111;
+  }
+
+  /* 'all' 리셋 점의 텍스트 */
+  .vertex-reset text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    fill: #555555;
+    transition: fill 200ms ease;
+  }
+  .vertex-reset[aria-pressed='true'] text,
+  .vertex-reset:hover text,
+  .vertex-reset:focus-visible text {
+    fill: #FAFAF7;
+  }
+
+  /* 키보드 포커스 링 (group 자체에 적용) */
+  .vertex:focus-visible,
+  .vertex-reset:focus-visible {
+    outline: 2px solid #1B4FE8;
+    outline-offset: 4px;
+    border-radius: 999px;
+  }
+
+  /* 모션 감소 환경 */
+  @media (prefers-reduced-motion: reduce) {
+    .vertex circle,
+    .vertex-reset circle,
+    .vertex-label,
+    .vertex-reset text {
+      transition: none;
+    }
+    .vertex:hover circle,
+    .vertex-reset:hover circle,
+    .vertex[aria-pressed='true'] circle,
+    .vertex-reset[aria-pressed='true'] circle {
+      transform: none;
+    }
+  }
+</style>
+
+<script>
+  const triggers = document.querySelectorAll<SVGGElement>('[data-filter-type]');
+  const yearBtns = document.querySelectorAll<HTMLButtonElement>('[data-filter-year]');
+  const cards    = document.querySelectorAll<HTMLElement>('[data-card]');
+
+  let activeType = 'all';
+  let activeYear = '';
+
+  function applyFilter() {
+    cards.forEach((card) => {
+      const typeMatch = activeType === 'all' || card.dataset.type === activeType;
+      const yearMatch = !activeYear || card.dataset.year === activeYear;
+      card.hidden = !(typeMatch && yearMatch);
+    });
+  }
+
+  function setActiveType(type: string) {
+    // 같은 정점 다시 누르면 'all'로 리셋
+    activeType = activeType === type && type !== 'all' ? 'all' : type;
+    triggers.forEach((g) => {
+      g.setAttribute('aria-pressed', String(g.dataset.filterType === activeType));
+    });
+    applyFilter();
+  }
+
+  triggers.forEach((g) => {
+    g.addEventListener('click', () => setActiveType(g.dataset.filterType ?? 'all'));
+    g.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        setActiveType(g.dataset.filterType ?? 'all');
+      }
+    });
+  });
+
+  yearBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const clicked = btn.dataset.filterYear ?? '';
+      activeYear = activeYear === clicked ? '' : clicked;
+      yearBtns.forEach((b) =>
+        b.setAttribute('aria-pressed', String(b.dataset.filterYear === activeYear)),
+      );
+      applyFilter();
+    });
+  });
+</script>

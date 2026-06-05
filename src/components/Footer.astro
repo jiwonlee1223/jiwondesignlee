@@ -1,0 +1,17 @@
+---
+import { t } from '@/i18n/utils';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-fg/10 mt-auto">
+  <div class="site-container flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 py-8 text-xs text-fg-muted font-mono">
+    <span>© {year} Jiwon Lee</span>
+    <nav aria-label="Footer navigation">
+      <ul class="flex gap-4" role="list">
+        <li><a href="/about/" class="hover:text-fg transition-colors">{t('about.contact')}</a></li>
+        <li><a href="/cv.pdf" class="hover:text-fg transition-colors">{t('about.cv')}</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>

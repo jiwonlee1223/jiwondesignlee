@@ -1,0 +1,162 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import ProjectCard from '@/components/ProjectCard.astro';
+
+interface Props {
+  entries: CollectionEntry<'projects'>[];
+}
+
+const { entries } = Astro.props;
+const total = entries.length;
+---
+
+<section
+  class="relative"
+  id="project-carousel"
+  aria-label="Featured projects"
+  aria-roledescription="carousel"
+>
+  <!-- ── 트랙 ──────────────────────────────────────────────────────────── -->
+  <div
+    id="carousel-track"
+    class="flex overflow-x-scroll snap-x snap-mandatory scrollbar-none
+           [-webkit-overflow-scrolling:touch]"
+    aria-live="polite"
+  >
+    {entries.map((entry, i) => (
+      <div
+        class="flex-none w-full snap-start
+               [&>article]:h-full
+               min-h-[460px] sm:min-h-[520px] md:min-h-[600px]"
+        role="group"
+        aria-roledescription="slide"
+        aria-label={`${i + 1} / ${total}`}
+        data-slide={i}
+      >
+        <ProjectCard entry={entry} />
+      </div>
+    ))}
+  </div>
+
+  <!-- ── 이전 / 다음 버튼 ───────────────────────────────────────────────── -->
+  <button
+    id="carousel-prev"
+    aria-label="Previous project"
+    aria-controls="carousel-track"
+    class="absolute left-4 top-1/2 -translate-y-1/2 z-10
+           w-10 h-10 flex items-center justify-center
+           bg-bg/80 backdrop-blur-sm border border-fg/20
+           text-fg hover:bg-fg hover:text-bg
+           transition-colors duration-200
+           disabled:opacity-20 disabled:pointer-events-none"
+    disabled
+  >
+    ←
+  </button>
+
+  <button
+    id="carousel-next"
+    aria-label="Next project"
+    aria-controls="carousel-track"
+    class="absolute right-4 top-1/2 -translate-y-1/2 z-10
+           w-10 h-10 flex items-center justify-center
+           bg-bg/80 backdrop-blur-sm border border-fg/20
+           text-fg hover:bg-fg hover:text-bg
+           transition-colors duration-200
+           disabled:opacity-20 disabled:pointer-events-none"
+  >
+    →
+  </button>
+
+  <!-- ── 슬라이드 인디케이터 ──────────────────────────────────────────── -->
+  <div
+    class="flex justify-center items-center gap-2 py-4 bg-bg border-t border-fg/10"
+    role="tablist"
+    aria-label="Select slide"
+  >
+    {entries.map((entry, i) => (
+      <button
+        role="tab"
+        aria-selected={i === 0 ? 'true' : 'false'}
+        aria-label={`Go to slide ${i + 1}: ${entry.data.title}`}
+        aria-controls="carousel-track"
+        data-dot={i}
+        class="carousel-dot w-1.5 h-1.5 rounded-full bg-fg/20 transition-all duration-200
+               aria-selected:w-6 aria-selected:bg-fg"
+      />
+    ))}
+
+    <!-- 슬라이드 카운터 -->
+    <span
+      id="carousel-counter"
+      class="ml-3 font-mono text-xs text-fg-muted tabular-nums"
+      aria-hidden="true"
+    >
+      1 / {total}
+    </span>
+  </div>
+</section>
+
+<script>
+  const track   = document.getElementById('carousel-track')!;
+  const prev    = document.getElementById('carousel-prev') as HTMLButtonElement;
+  const next    = document.getElementById('carousel-next') as HTMLButtonElement;
+  const dots    = document.querySelectorAll<HTMLButtonElement>('[data-dot]');
+  const counter = document.getElementById('carousel-counter')!;
+  const total   = dots.length;
+
+  let current = 0;
+
+  function goTo(index: number, behavior: ScrollBehavior = 'smooth') {
+    // prefers-reduced-motion → 즉시 이동
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    track.scrollTo({
+      left:     index * track.offsetWidth,
+      behavior: prefersReduced ? 'instant' : behavior,
+    });
+  }
+
+  function update(index: number) {
+    current = Math.max(0, Math.min(index, total - 1));
+
+    // 버튼 disabled
+    prev.disabled = current === 0;
+    next.disabled = current === total - 1;
+
+    // 인디케이터
+    dots.forEach((dot, i) => {
+      dot.setAttribute('aria-selected', String(i === current));
+    });
+
+    // 카운터
+    counter.textContent = `${current + 1} / ${total}`;
+  }
+
+  // ── 스크롤 → 슬라이드 감지 ────────────────────────────────────────────
+  let scrollTimer: ReturnType<typeof setTimeout>;
+  track.addEventListener('scroll', () => {
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(() => {
+      const idx = Math.round(track.scrollLeft / track.offsetWidth);
+      update(idx);
+    }, 50);
+  }, { passive: true });
+
+  // ── 버튼 ──────────────────────────────────────────────────────────────
+  prev.addEventListener('click', () => { goTo(current - 1); update(current - 1); });
+  next.addEventListener('click', () => { goTo(current + 1); update(current + 1); });
+
+  // ── 인디케이터 ────────────────────────────────────────────────────────
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => { goTo(i); update(i); });
+  });
+
+  // ── 키보드 ────────────────────────────────────────────────────────────
+  document.getElementById('project-carousel')!.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft')  { e.preventDefault(); goTo(current - 1); update(current - 1); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); goTo(current + 1); update(current + 1); }
+  });
+
+  // 초기 상태
+  update(0);
+</script>

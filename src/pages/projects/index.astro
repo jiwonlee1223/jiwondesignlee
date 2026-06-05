@@ -1,0 +1,22 @@
+---
+// /projects/ 는 더 이상 별도 인덱스가 아니라 홈으로 통합된다.
+// Astro.redirect() 는 정적 빌드에서 2초 meta refresh를 만드므로,
+// 즉시 이동되도록 0초 meta refresh + JS replace 페이지를 직접 발행한다.
+const target = '/';
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+    <link rel="canonical" href={target} />
+    <meta name="robots" content="noindex" />
+    <title>Redirecting…</title>
+    <script is:inline>
+      window.location.replace('/');
+    </script>
+  </head>
+  <body>
+    <a href={target}>Continue to home →</a>
+  </body>
+</html>

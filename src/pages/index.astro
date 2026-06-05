@@ -1,0 +1,58 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout       from '@/layouts/BaseLayout.astro';
+import ProjectCard      from '@/components/ProjectCard.astro';
+import CategoryTriangle from '@/components/CategoryTriangle.astro';
+import { t } from '@/i18n/utils';
+
+const allProjects = await getCollection('projects');
+const projects = allProjects.sort((a, b) => b.data.year - a.data.year);
+
+// 삼각형 아래의 보조 연도 칩에 넘길 연도 목록 (중복 제거, 내림차순)
+const years = [...new Set(projects.map((p) => p.data.year))].sort((a, b) => b - a);
+
+const heroLines = t('home.heroHeadline').split('\n');
+---
+
+<BaseLayout
+  title={`Jiwon Lee — ${t('meta.defaultDesc')}`}
+  description={t('home.heroSub')}
+>
+  <!-- ── Hero ───────────────────────────────────────────────────────────── -->
+  <section class="site-container pt-20 pb-8">
+    <h1 class="font-display font-bold text-display-xl text-fg max-w-4xl">
+      {heroLines.map((line, i) => (
+        <span class="block">
+          {i === 0 ? line : <span class="text-accent-cobalt">{line}</span>}
+        </span>
+      ))}
+    </h1>
+
+    <p class="mt-6 font-sans text-lg text-fg-muted max-w-xl leading-relaxed">
+      {t('home.heroSub')}
+    </p>
+
+    <p class="mt-3 font-mono text-sm text-fg-muted opacity-60">
+      {t('home.tagline')}
+    </p>
+  </section>
+
+  <!-- ── Fallman 역삼각형 = 카테고리 네비게이션 ──────────────────────── -->
+  <CategoryTriangle years={years} />
+
+  <!-- ── 모든 프로젝트 — 이미지 위주 3열 갤러리 ─────────────────────────── -->
+  {projects.length > 0 && (
+    <section
+      aria-label="All projects"
+      class="site-container pb-24"
+    >
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-12">
+        {projects.map((entry) => (
+          <div data-card data-type={entry.data.type} data-year={entry.data.year}>
+            <ProjectCard entry={entry} />
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+</BaseLayout>
