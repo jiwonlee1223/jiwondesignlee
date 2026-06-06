@@ -1,5 +1,5 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { t } from '@/i18n/utils';
@@ -8,7 +8,7 @@ import { accentBg, accentFg, typeLabel } from '@/lib/utils';
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
   return projects.map((entry) => ({
-    params: { slug: entry.slug },
+    params: { slug: entry.id },
     props:  { entry },
   }));
 }
@@ -19,9 +19,6 @@ const {
   abstract, gallery,
   role, collaborators, venue, award, links,
 } = entry.data;
-
-// MDX 본문은 옵션 — 보통 비어 있음. 있다면 갤러리 아래에 가볍게 렌더.
-const { Content } = await render(entry);
 
 const bg = accentBg[accent];
 const fg = accentFg[accent];
@@ -44,7 +41,7 @@ const linkItems = [
 // prev / next 내비게이션
 const allProjects = (await getCollection('projects'))
   .sort((a, b) => b.data.year - a.data.year);
-const currentIdx = allProjects.findIndex((p) => p.slug === entry.slug);
+const currentIdx = allProjects.findIndex((p) => p.id === entry.id);
 const prev = allProjects[currentIdx + 1];
 const next = allProjects[currentIdx - 1];
 ---
@@ -164,14 +161,6 @@ const next = allProjects[currentIdx - 1];
     </section>
   )}
 
-  <!-- ── 선택적 MDX 본문 — 비어있으면 렌더되지 않음 ────────────────────── -->
-  <article class="site-container pb-20 prose prose-lg max-w-3xl
-    prose-headings:font-display prose-headings:font-bold
-    prose-a:text-accent-cobalt prose-a:no-underline hover:prose-a:underline
-    prose-img:rounded-none">
-    <Content />
-  </article>
-
   <!-- ── prev / next 내비게이션 ────────────────────────────────────────── -->
   <nav
     aria-label="Project navigation"
@@ -179,7 +168,7 @@ const next = allProjects[currentIdx - 1];
   >
     {prev ? (
       <a
-        href={`/projects/${prev.slug}/`}
+        href={`/projects/${prev.id}/`}
         class="group flex flex-col gap-1 max-w-[45%]"
       >
         <span class="font-mono text-xs text-fg-muted">← {t('project.prev')}</span>
@@ -191,7 +180,7 @@ const next = allProjects[currentIdx - 1];
 
     {next && (
       <a
-        href={`/projects/${next.slug}/`}
+        href={`/projects/${next.id}/`}
         class="group flex flex-col gap-1 max-w-[45%] text-right ml-auto"
       >
         <span class="font-mono text-xs text-fg-muted">{t('project.next')} →</span>

@@ -4,121 +4,126 @@
     "projects": {
       "type": "object",
       "properties": {
-        "title": {
-          "type": "string"
-        },
-        "year": {
-          "type": "integer",
-          "minimum": 2000,
-          "maximum": 2100
-        },
-        "type": {
-          "type": "string",
-          "enum": [
-            "design-practice",
-            "design-research",
-            "design-exploration"
-          ]
-        },
-        "tags": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "cover": {
-          "type": "string"
-        },
-        "accent": {
-          "type": "string",
-          "enum": [
-            "cobalt",
-            "vermilion",
-            "lime",
-            "mustard",
-            "lavender"
-          ]
-        },
-        "summary": {
-          "type": "string",
-          "maxLength": 200
-        },
-        "abstract": {
-          "type": "string"
-        },
-        "gallery": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "src": {
-                "type": "string"
-              },
-              "alt": {
-                "type": "string"
-              },
-              "caption": {
-                "type": "string"
-              },
-              "width": {
-                "type": "string",
-                "enum": [
-                  "full",
-                  "half"
-                ],
-                "default": "full"
-              }
-            },
-            "required": [
-              "src",
-              "alt"
-            ],
-            "additionalProperties": false
-          }
-        },
-        "role": {
-          "type": "string"
-        },
-        "collaborators": {
-          "type": "string"
-        },
-        "venue": {
-          "type": "string"
-        },
-        "award": {
-          "type": "string"
-        },
-        "links": {
-          "type": "object",
-          "properties": {
-            "paper": {
-              "type": "string",
-              "format": "uri"
-            },
-            "github": {
-              "type": "string",
-              "format": "uri"
-            },
-            "demo": {
-              "type": "string",
-              "format": "uri"
-            }
-          },
-          "additionalProperties": false
-        },
         "$schema": {
           "type": "string"
         }
       },
-      "required": [
-        "title",
-        "year",
-        "type",
-        "tags",
-        "accent",
-        "summary"
-      ],
-      "additionalProperties": false
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "year": {
+            "type": "integer",
+            "minimum": 2000,
+            "maximum": 2100
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "design-practice",
+              "design-research",
+              "design-exploration"
+            ]
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "cover": {
+            "type": "string"
+          },
+          "accent": {
+            "type": "string",
+            "enum": [
+              "cobalt",
+              "vermilion",
+              "lime",
+              "mustard",
+              "lavender"
+            ]
+          },
+          "summary": {
+            "type": "string",
+            "maxLength": 200
+          },
+          "abstract": {
+            "type": "string"
+          },
+          "gallery": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "src": {
+                  "type": "string"
+                },
+                "alt": {
+                  "type": "string"
+                },
+                "caption": {
+                  "type": "string"
+                },
+                "width": {
+                  "type": "string",
+                  "enum": [
+                    "full",
+                    "half"
+                  ],
+                  "default": "full"
+                }
+              },
+              "required": [
+                "src",
+                "alt"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "role": {
+            "type": "string"
+          },
+          "collaborators": {
+            "type": "string"
+          },
+          "venue": {
+            "type": "string"
+          },
+          "award": {
+            "type": "string"
+          },
+          "links": {
+            "type": "object",
+            "properties": {
+              "paper": {
+                "type": "string",
+                "format": "uri"
+              },
+              "github": {
+                "type": "string",
+                "format": "uri"
+              },
+              "demo": {
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "title",
+          "year",
+          "type",
+          "tags",
+          "accent",
+          "summary"
+        ],
+        "additionalProperties": false
+      }
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#"

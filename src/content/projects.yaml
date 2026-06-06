@@ -1,0 +1,148 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# 모든 프로젝트를 이 한 파일에서 관리한다.
+#
+# - 프로젝트 분류(type)를 바꾸려면 해당 항목의 `type:` 값만 고치면 된다.
+#   사용 가능한 값: design-practice / design-research / design-exploration
+#   (스키마 정의: src/content/config.ts)
+# - 슬러그 상세 페이지(/projects/<id>/) 내용도 전부 여기서 수정한다.
+#   id 가 곧 URL 슬러그가 된다.
+# - 선택 필드(role/collaborators/venue/award/abstract/links/cover/gallery)는
+#   필요할 때만 채우고, 비워두면 페이지에서 자동으로 숨겨진다.
+# - 이미지(cover/gallery)는 현재 미사용. 추가할 때는 별도 검증 필요(README/플랜 참고).
+# ─────────────────────────────────────────────────────────────────────────────
+
+- id: cits-hmi
+  title: "Driver HMI Service Scenario and Blueprint Development for C-ITS"
+  year: 2023
+  type: design-practice
+  tags: ["Service Design", "Driver HMI", "Automotive", "C-ITS"]
+  accent: mustard
+  summary: "Service scenarios and blueprints for in-vehicle driver HMI in a Cooperative Intelligent Transport Systems context."
+  # role: "TODO — add your role"
+  # collaborators: "TODO — add coauthors"
+  # venue: "TODO — add venue"
+  # abstract: "TODO — paste the published paper abstract here."
+
+- id: adaptive-ui
+  title: "Reminiscences of Futures (RoF): Designing and Studying Encounters with Embodied, AI-Generated Future Selves"
+  year: 2026
+  type: design-research
+  tags: ["AI Agents", "Embodied AI", "Future Self", "Reflection"]
+  accent: cobalt
+  summary: "Designing and studying how people encounter embodied, AI-generated representations of their future selves."
+  role: "Lead Researcher"
+  # collaborators: "TODO — add coauthors"
+  venue: "CHI 2026"
+  # abstract: "TODO — paste the published paper abstract here."
+  links:
+    paper: "https://dl.acm.org/doi/placeholder"
+
+- id: blabu
+  title: "Blabu: Empathic Storytelling Agent of a Car Blackbox Utilizing a Data-Processor-LLM Pipeline"
+  year: 2024
+  type: design-research
+  tags: ["LLM", "Storytelling", "Automotive", "Conversational AI"]
+  accent: vermilion
+  summary: "An empathic storytelling agent that turns dashcam footage and sensor data into reflective narratives via a data-processor-LLM pipeline."
+  # role: "TODO — add your role"
+  # collaborators: "KSDS"
+  # venue: "TODO — add venue (e.g. HCI Korea 2025)"
+  # abstract: "TODO — paste the published paper abstract here."
+
+- id: journey-map
+  title: "Interactive & Intelligent Journey Map on a Spatiotemporal Grid for Creative Design Exploration"
+  year: 2024
+  type: design-research
+  tags: ["Design Tools", "Journey Mapping", "Spatiotemporal", "Creativity Support"]
+  accent: lime
+  summary: "A creativity-support tool that organizes design ideas on a spatiotemporal grid, letting designers explore intelligent, structured journey maps."
+  # role: "TODO — add your role"
+  # collaborators: "TODO — add coauthors"
+  # venue: "TODO — add venue"
+  # abstract: "TODO — paste the published paper abstract here."
+
+- id: ai-home-communication
+  title: "AI Home Communication Design"
+  year: 2024
+  type: design-exploration
+  tags: ["Generative AI", "Prompting Framework", "Home Appliances", "LLMOps"]
+  accent: lime
+  summary: "User interaction design for home appliances, centered on a Generative AI prompting framework for natural human–device communication."
+  role: "UX Designer"
+  collaborators: "KAIST, Samsung Electronics"
+  # 기간: 2023년 12월 – 2024년 6월
+  # abstract: "TODO — paste the published paper abstract here, if any."
+
+- id: campus-platform
+  title: "University Campus Convenience Platform"
+  year: 2023
+  type: design-exploration
+  tags: ["Service Design", "Entrepreneurship", "Campus", "Patent"]
+  accent: lavender
+  summary: "A platform system delivering convenience functions for university campus life — undergraduate project that resulted in a registered patent."
+  role: "Designer & Developer"
+  award: "WAIKWITH Entrepreneurship Competition · Grand Prize"
+  # 특허: 대학교 캠퍼스에서 편의 기능 제공 플랫폼 시스템 (Platform system for providing convenience function in university campus)
+  # abstract: "TODO — describe the platform, the problem it solves, and how it works."
+
+- id: human-city-design-2021
+  title: "Human City Design Workshop 2021"
+  year: 2021
+  type: design-exploration
+  tags: ["Urban Design", "Workshop", "Speculative"]
+  accent: mustard
+  summary: "A studio workshop project exploring human-centered city design."
+  role: "Designer"
+  award: "Human City Design Student Workshop · Academic Award"
+  # 정확한 프로젝트 이름·주제·과정은 추후 채울 것
+  # abstract: "TODO"
+
+- id: fluid-in-car-ux
+  title: "Fluid In-Car UX Development"
+  year: 2025
+  type: design-exploration
+  tags: ["In-Car UX", "Multi-Passenger", "UI Distribution", "Automotive"]
+  accent: cobalt
+  summary: "Scenarios, visuals, and interactions for distributing in-vehicle UI across multi-passenger experiences, validated through iterative UX prototypes."
+  role: "UX Researcher & Designer"
+  collaborators: "KAIST School of Computing, GM Korea"
+  # venue: "TODO — add venue if published"
+  # 기간: 2024년 4월 – 2025년 9월
+  # abstract: "TODO — paste the published paper abstract here, if any."
+
+- id: water-tree
+  title: "Water Tree: A Bio-Inspired Water Generator"
+  year: 2025
+  type: design-exploration
+  tags: ["Industrial Design", "Sustainability", "Bio-inspired", "Water", "Concept"]
+  accent: cobalt
+  summary: "A nature-inspired water generator — root robots, an artificial stem under negative pressure, and transpiring leaves harvest clean water for disaster zones, deserts, and Mars."
+  role: "Designer"
+  collaborators: "KAIST CIDR Lab. — Tek-Jin Nam, Suhyun Lim, Jisu Park, Jiwon Lee  /  zoslee studio — Youngho Lee, Kitak Lee, Changwoo Yun, Kitae Kim"
+  award: "iF Design Award 2025 · Product Concepts (Environmental Products)"
+  # abstract: "TODO — 식물의 수분 흡수·증산 메커니즘에서 출발한 컨셉 설명, 작동 원리, 적용 시나리오(재난지역/사막/저개발지역/화성)."
+  links:
+    demo: "https://ifdesign.com/en/winner-ranking/project/water-tree/709602"
+
+- id: oxynizer
+  title: "Oxynizer: A Non-Electronic Oxygen Generator"
+  year: 2024
+  type: design-exploration
+  tags: ["Industrial Design", "Medical", "Non-electronic", "Sustainability"]
+  accent: vermilion
+  summary: "A non-electronic oxygen generator — designed to deliver medical-grade oxygen without batteries or electrical infrastructure."
+  role: "Designer"
+  award: "James Dyson Award 2024 · Korea National Winner · International Top 20  /  IDEA · Bronze  /  KAIST Q-Day 2024 · Creativity & Talent Education Award"
+  # abstract: "TODO — describe the design problem, mechanism, and field context."
+
+- id: shamain
+  title: "ShamAIn: Designing Superior Conversational AI Inspired by Shamanism"
+  year: 2025
+  type: design-exploration
+  tags: ["Conversational AI", "Speculative", "Cultural Design", "Ritual"]
+  accent: lavender
+  summary: "A speculative conversational agent that draws on shamanic ritual and metaphor to imagine more meaningful, mediated AI dialogue."
+  # role: "TODO — add your role"
+  # collaborators: "TODO — add coauthors"
+  # venue: "CHI 2025"
+  # abstract: "TODO — paste the published paper abstract here."

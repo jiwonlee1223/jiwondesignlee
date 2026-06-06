@@ -1,4 +1,5 @@
 import { defineCollection, z } from 'astro:content';
+import { file } from 'astro/loaders';
 
 // ─── 공통 타입 ────────────────────────────────────────────────────────────────
 
@@ -6,12 +7,13 @@ const AccentColor = z.enum(['cobalt', 'vermilion', 'lime', 'mustard', 'lavender'
 const ProjectType = z.enum(['design-practice', 'design-research', 'design-exploration']);
 
 // ─── projects ────────────────────────────────────────────────────────────────
-// 파일 위치: src/content/projects/*.mdx
-// 프로젝트 상세 페이지는 이미지 위주 — 본문은 거의 비우고 cover + gallery로 표현.
+// 모든 프로젝트는 단일 파일 src/content/projects.yaml 에서 관리한다.
+// (각 항목의 `id` 가 슬러그가 된다. 분류 변경은 그 파일의 `type:` 만 고치면 됨.)
+// 프로젝트 상세 페이지는 이미지 위주 — cover + gallery로 표현하고 본문은 없다.
 // 논문이 있는 프로젝트는 `abstract` 필드만 텍스트로 노출한다.
 
 const projects = defineCollection({
-  type: 'content',
+  loader: file('src/content/projects.yaml'),
   schema: ({ image }) =>
     z.object({
       title:    z.string(),

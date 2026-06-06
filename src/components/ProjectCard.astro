@@ -9,7 +9,7 @@ interface Props {
 
 const { entry } = Astro.props;
 const { title, year, type, accent, cover, venue, award } = entry.data;
-const href = `/projects/${entry.slug}/`;
+const href = `/projects/${entry.id}/`;
 ---
 
 <a
