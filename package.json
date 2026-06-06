@@ -9,7 +9,7 @@
     "dev": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "start": "serve dist -l tcp://0.0.0.0:${PORT:-4321} --single --no-clipboard",
+    "start": "serve dist -l tcp://0.0.0.0:${PORT:-4321} --no-clipboard",
     "check": "astro check"
   },
   "dependencies": {
