@@ -10,7 +10,9 @@ const year = new Date().getFullYear();
     <nav aria-label="Footer navigation">
       <ul class="flex gap-4" role="list">
         <li><a href="/about/" class="hover:text-fg transition-colors">{t('about.contact')}</a></li>
-        <li><a href="/cv.pdf" class="hover:text-fg transition-colors">{t('about.cv')}</a></li>
+        <!-- CV 완성 전까지 일시 비활성화. 완성되면 아래 span을 지우고 주석의 a를 복원:
+             <li><a href="/cv.pdf" class="hover:text-fg transition-colors">{t('about.cv')}</a></li> -->
+        <li><span class="opacity-50 cursor-not-allowed select-none" aria-disabled="true" title="CV is coming soon">{t('about.cv')} · Coming soon</span></li>
       </ul>
     </nav>
   </div>
