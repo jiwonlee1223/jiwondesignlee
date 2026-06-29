@@ -49,7 +49,7 @@
   # venue: "TODO — add venue (e.g. HCI Korea 2025)"
   # abstract: "TODO — paste the published paper abstract here."
 
-- id: journey-map
+- id: iijm
   title: "Interactive & Intelligent Journey Map on a Spatiotemporal Grid for Creative Design Exploration"
   year: 2024
   type: design-research
@@ -60,6 +60,20 @@
   # collaborators: "TODO — add coauthors"
   # venue: "TODO — add venue"
   # abstract: "TODO — paste the published paper abstract here."
+
+- id: journey-creator
+  title: "Journey Creator: An AI-Empowered Journey Mapping Tool for Experience Design Exploration"
+  year: 2025
+  type: design-research
+  tags: ["User Journey Map", "Generative AI", "Design Tools", "Experience Design"]
+  accent: mustard
+  summary: "An AI-empowered journey mapping tool that visualizes multi-user journeys on a spatiotemporal grid and turns scenarios into editable maps and storyboards for creative experience-design exploration."
+  role: "Lead Researcher (First Author)"
+  collaborators: "Tek-Jin Nam (KAIST)"
+  venue: "IASDR 2025"
+  abstract: "Although user journey mapping is widely employed to analyze and diagnose user experiences, it offers limited support for design exploration and refining product and service concepts. Recent advances in generative AI have created new opportunities to reconceive the journey map as a tool for creative design inquiry. This study first identifies the limitations of existing tools and then conducts a formative investigation to clarify the requirements for a new approach. We developed Journey Creator, a design tool that visualizes touchpoint-level interactions and multi-user journeys, provides multimodal data representations, and supports a stepwise process for expanding ideas. Evaluation results show that the system helps designers understand and articulate user journeys structurally, enables detailed examination of user experiences, and effectively stimulates imagination and idea generation. The paper concludes by discussing the implications of Journey Creator as an AI-empowered design tool and by outlining the potential for designer-AI collaboration in future design practice."
+  links:
+    paper: "https://doi.org/10.21606/iasdr.2025.1000"
 
 - id: ai-home-communication
   title: "AI Home Communication Design"
