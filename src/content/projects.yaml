@@ -23,19 +23,19 @@
   # venue: "TODO — add venue"
   # abstract: "TODO — paste the published paper abstract here."
 
-- id: adaptive-ui
+- id: rof
   title: "Reminiscences of Futures (RoF): Designing and Studying Encounters with Embodied, AI-Generated Future Selves"
   year: 2026
   type: design-research
   tags: ["AI Agents", "Embodied AI", "Future Self", "Reflection"]
-  accent: cobalt
+  accent: lavender
   summary: "Designing and studying how people encounter embodied, AI-generated representations of their future selves."
   role: "Lead Researcher"
   # collaborators: "TODO — add coauthors"
   venue: "CHI 2026"
   # abstract: "TODO — paste the published paper abstract here."
   links:
-    paper: "https://dl.acm.org/doi/placeholder"
+    paper: "https://dl.acm.org/doi/10.1145/3772318.3791750"
 
 - id: blabu
   title: "Blabu: Empathic Storytelling Agent of a Car Blackbox Utilizing a Data-Processor-LLM Pipeline"
@@ -90,7 +90,7 @@
 - id: campus-platform
   title: "University Campus Convenience Platform"
   year: 2023
-  type: design-exploration
+  type: design-research
   tags: ["Service Design", "Entrepreneurship", "Campus", "Patent"]
   accent: lavender
   summary: "A platform system delivering convenience functions for university campus life — undergraduate project that resulted in a registered patent."
@@ -114,7 +114,7 @@
 - id: fluid-in-car-ux
   title: "Fluid In-Car UX Development"
   year: 2025
-  type: design-exploration
+  type: design-practice
   tags: ["In-Car UX", "Multi-Passenger", "UI Distribution", "Automotive"]
   accent: cobalt
   summary: "Scenarios, visuals, and interactions for distributing in-vehicle UI across multi-passenger experiences, validated through iterative UX prototypes."
@@ -152,7 +152,7 @@
 - id: shamain
   title: "ShamAIn: Designing Superior Conversational AI Inspired by Shamanism"
   year: 2025
-  type: design-exploration
+  type: design-research
   tags: ["Conversational AI", "Speculative", "Cultural Design", "Ritual"]
   accent: lavender
   summary: "A speculative conversational agent that draws on shamanic ritual and metaphor to imagine more meaningful, mediated AI dialogue."
