@@ -227,7 +227,9 @@ const { years = [] } = Astro.props;
 
   function applyFilter() {
     cards.forEach((card) => {
-      const typeMatch = activeType === 'all' || card.dataset.type === activeType;
+      // data-type 은 공백으로 구분된 목록 (대표 분류 + journey 단계들)
+      const typeMatch =
+        activeType === 'all' || (card.dataset.type ?? '').split(' ').includes(activeType);
       const yearMatch = !activeYear || card.dataset.year === activeYear;
       card.hidden = !(typeMatch && yearMatch);
     });
