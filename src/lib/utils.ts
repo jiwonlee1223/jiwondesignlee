@@ -36,7 +36,7 @@ export const typeLabel: Record<ProjectTypeKey, string> = {
 
 const ORDER: AccentColorKey[] = ['cobalt', 'vermilion', 'lime', 'mustard', 'lavender'];
 
-/** slug를 시드로 결정적 색상 선택 — 매 빌드마다 동일 */
+/** slug를 시드로 결정적 색상 선택, 매 빌드마다 동일 */
 export function accentFromSlug(slug: string): AccentColorKey {
   const hash = [...slug].reduce((acc, ch) => acc + ch.charCodeAt(0), 0);
   return ORDER[hash % ORDER.length];

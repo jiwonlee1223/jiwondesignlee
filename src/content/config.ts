@@ -9,7 +9,7 @@ const ProjectType = z.enum(['design-practice', 'design-research', 'design-explor
 // ─── projects ────────────────────────────────────────────────────────────────
 // 모든 프로젝트는 단일 파일 src/content/projects.yaml 에서 관리한다.
 // (각 항목의 `id` 가 슬러그가 된다. 분류 변경은 그 파일의 `type:` 만 고치면 됨.)
-// 프로젝트 상세 페이지는 이미지 위주 — cover + gallery로 표현하고 본문은 없다.
+// 프로젝트 상세 페이지는 이미지 위주로, cover + gallery로 표현하고 본문은 없다.
 // 논문이 있는 프로젝트는 `abstract` 필드만 텍스트로 노출한다.
 
 const projects = defineCollection({
@@ -26,21 +26,42 @@ const projects = defineCollection({
 
       // ── 상세 페이지 콘텐츠 ──
       abstract: z.string().optional(),        // 논문 abstract (없으면 미노출)
+      journey: z                              // 프로젝트가 거쳐 온 단계 (practice → studies → exploration)
+        .array(
+          z.object({
+            type:  ProjectType,
+            year:  z.number().int().optional(),
+            label: z.string(),
+          }),
+        )
+        .optional(),
+      priorWork: z                           // 선행 연구 (상세 페이지에서 abstract 아래에 노출)
+        .object({
+          title:    z.string(),
+          venue:    z.string().optional(),
+          year:     z.number().int().optional(),
+          abstract: z.string().optional(),
+          paper:    z.string().url().optional(),
+        })
+        .optional(),
       gallery: z
         .array(
           z.object({
             src:     image(),
             alt:     z.string(),
             caption: z.string().optional(),
-            width:   z.enum(['full', 'half']).default('full'),
+            width:   z.enum(['full', 'half']).default('half'),
           }),
         )
         .optional(),
 
       // ── 메타 사이드바 ──
       role:          z.string().optional(),
-      collaborators: z.string().optional(),   // 쉼표 구분 문자열
+      authors:       z.string().optional(),   // 논문 저자 전체 (본인 포함, 논문 게재 순서)
+      collaborators: z.string().optional(),   // 논문이 아닌 프로젝트의 협업자 (쉼표 구분 문자열)
+      advisor:       z.string().optional(),   // 지도교수 (예: "Tek-Jin Nam (KAIST)")
       venue:         z.string().optional(),   // 발표 학회 (연구 프로젝트용)
+      support:       z.string().optional(),   // 후원/지원 기관 (예: "LG CX Center")
       award:         z.string().optional(),   // 수상 내역 (예: "James Dyson Award 2024 · Korea Winner")
       links: z
         .object({

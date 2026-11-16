@@ -1,5 +1,5 @@
 /*
-  Self-hosting Pretendard (현재는 jsDelivr CDN 사용 — BaseLayout.astro)
+  Self-hosting Pretendard (현재는 jsDelivr CDN 사용, BaseLayout.astro)
   Self-host 전환 방법:
     1. https://github.com/orioncactus/pretendard/releases 에서
        pretendard-1.x.x.zip 다운로드
@@ -8,7 +8,7 @@
     4. BaseLayout.astro의 Pretendard CDN <link> 제거
 */
 
-/* ─── @font-face (self-hosted — uncomment when ready) ───────────────────── */
+/* ─── @font-face (self-hosted, uncomment when ready) ───────────────────── */
 /*
 @font-face {
   font-family: 'Pretendard Variable';
@@ -86,7 +86,7 @@
 /* ─── Utilities ──────────────────────────────────────────────────────────── */
 
 @layer utilities {
-  /* 스크롤바 숨기기 — 캐러셀 트랙용 */
+  /* 스크롤바 숨기기: 캐러셀 트랙용 */
   .scrollbar-none {
     scrollbar-width: none;
   }

@@ -18,10 +18,13 @@
   tags: ["Service Design", "Driver HMI", "Automotive", "C-ITS"]
   accent: mustard
   summary: "Service scenarios and blueprints for in-vehicle driver HMI in a Cooperative Intelligent Transport Systems context."
-  # role: "TODO — add your role"
-  # collaborators: "TODO — add coauthors"
-  # venue: "TODO — add venue"
-  # abstract: "TODO — paste the published paper abstract here."
+  role: "Co-author"
+  authors: "Joon Young Kim, Jiwon Lee, Jaecheol Kim, Yeoreum Lee"
+  advisor: "Joon Young Kim"
+  venue: "KIICE"
+  abstract: "In the case of the cooperative intelligent transportation system (C-ITS), one of the advanced technologies to improve the drivability of existing vehicles and driver safety, including commercial vehicles, we need additional consideration of the C-ITS service at the driver level. In particular, it is necessary to identify and improve C-ITS functions and service issues at the HMI level in advance through scenario development and driver reaction simulation. In this paper, we developed C-ITS driver HMI scenarios. For the development, we first investigated the current C-ITS service and in-vehicle HMI analysis for driver scenarios. We also measured the driver's reaction speed using Simio simulation. Given our analysis, we developed service blueprinting maps for commercial vehicle drivers, including user journeys, and we analyzed C-ITS services from various user HMI perspectives."
+  links:
+    paper: "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002972089"
 
 - id: rof
   title: "Reminiscences of Futures (RoF): Designing and Studying Encounters with Embodied, AI-Generated Future Selves"
@@ -29,11 +32,24 @@
   type: design-research
   tags: ["AI Agents", "Embodied AI", "Future Self", "Reflection"]
   accent: lavender
+  cover: ../assets/projects/rof.png
   summary: "Designing and studying how people encounter embodied, AI-generated representations of their future selves."
-  role: "Lead Researcher"
-  # collaborators: "TODO — add coauthors"
+  role: "First Author"
+  advisor: "Tek-Jin Nam (KAIST)"
+  authors: "Jiwon Lee, Yewon Kim, Chang-Min Kim, Suhyun Lim, Chang Hyun Park, Subin Cho, Tek-Jin Nam"
+  collaborators: "Yewon Kim, Jieun Lee, Tae-hyun Lee, Jiyoon Lee, Jisu Park (KINTEX exhibition)"
   venue: "CHI 2026"
-  # abstract: "TODO — paste the published paper abstract here."
+  support: "LG CX Center"
+  journey:
+    - type: design-practice
+      year: 2025
+      label: "Started as an industry-academia project with LG CX Center"
+    - type: design-research
+      year: 2026
+      label: "Paper presented at CHI 2026"
+    - type: design-exploration
+      label: "Exhibited at the Korea Science Festival in Gyeonggi (KINTEX), hosted by the Ministry of Science and ICT"
+  abstract: "AI-generated future selves have been explored for self-reflection and counseling, yet most remain confined to chat, voice, or diary formats. We introduce RoF (Reminiscences of Futures), a system that enables users to encounter and converse with embodied future selves. It synthesizes voice and appearance from personal data and generates three projections of the user ten years ahead, situated within a tunnel-like installation that evokes a time-slip experience. We report the design process, stepwise judgements, and a formative study with six parent–child pairs that informed design strategies. We also present a week-long user study with fifteen participants. Participants perceived RoF as an emotionally rich experience, reporting shifts in their attitudes toward the future and deeper reflection on their present identity and life. We discuss the implications of interacting with future selves for fostering reflection and preparing positively for the future, as well as ethical issues, such as self-replication using AI."
   links:
     paper: "https://dl.acm.org/doi/10.1145/3772318.3791750"
 
@@ -44,22 +60,13 @@
   tags: ["LLM", "Storytelling", "Automotive", "Conversational AI"]
   accent: vermilion
   summary: "An empathic storytelling agent that turns dashcam footage and sensor data into reflective narratives via a data-processor-LLM pipeline."
-  # role: "TODO — add your role"
+  role: "First Author"
   # collaborators: "KSDS"
-  # venue: "TODO — add venue (e.g. HCI Korea 2025)"
-  # abstract: "TODO — paste the published paper abstract here."
-
-- id: iijm
-  title: "Interactive & Intelligent Journey Map on a Spatiotemporal Grid for Creative Design Exploration"
-  year: 2024
-  type: design-research
-  tags: ["Design Tools", "Journey Mapping", "Spatiotemporal", "Creativity Support"]
-  accent: lime
-  summary: "A creativity-support tool that organizes design ideas on a spatiotemporal grid, letting designers explore intelligent, structured journey maps."
-  # role: "TODO — add your role"
-  # collaborators: "TODO — add coauthors"
-  # venue: "TODO — add venue"
-  # abstract: "TODO — paste the published paper abstract here."
+  advisor: "Tek-Jin Nam (KAIST)"
+  # venue: "TODO: add venue (e.g. HCI Korea 2025)"
+  # abstract: "TODO: paste the published paper abstract here."
+  links:
+    paper: "https://koasas.kaist.ac.kr/handle/10203/325454"
 
 - id: journey-creator
   title: "Journey Creator: An AI-Empowered Journey Mapping Tool for Experience Design Exploration"
@@ -67,11 +74,18 @@
   type: design-research
   tags: ["User Journey Map", "Generative AI", "Design Tools", "Experience Design"]
   accent: mustard
+  cover: ../assets/projects/journeycreator.png
   summary: "An AI-empowered journey mapping tool that visualizes multi-user journeys on a spatiotemporal grid and turns scenarios into editable maps and storyboards for creative experience-design exploration."
   role: "Lead Researcher (First Author)"
-  collaborators: "Tek-Jin Nam (KAIST)"
+  advisor: "Tek-Jin Nam (KAIST)"
   venue: "IASDR 2025"
   abstract: "Although user journey mapping is widely employed to analyze and diagnose user experiences, it offers limited support for design exploration and refining product and service concepts. Recent advances in generative AI have created new opportunities to reconceive the journey map as a tool for creative design inquiry. This study first identifies the limitations of existing tools and then conducts a formative investigation to clarify the requirements for a new approach. We developed Journey Creator, a design tool that visualizes touchpoint-level interactions and multi-user journeys, provides multimodal data representations, and supports a stepwise process for expanding ideas. Evaluation results show that the system helps designers understand and articulate user journeys structurally, enables detailed examination of user experiences, and effectively stimulates imagination and idea generation. The paper concludes by discussing the implications of Journey Creator as an AI-empowered design tool and by outlining the potential for designer-AI collaboration in future design practice."
+  priorWork:
+    title: "Interactive & Intelligent Journey Map on a Spatiotemporal Grid for Creative Design Exploration"
+    year: 2024
+    # venue: "TODO: add venue"
+    # paper: "TODO: add paper link"
+    # abstract: "TODO: paste the published paper abstract here."
   links:
     paper: "https://doi.org/10.21606/iasdr.2025.1000"
 
@@ -85,7 +99,7 @@
   role: "UX Designer"
   collaborators: "KAIST, Samsung Electronics"
   # 기간: 2023년 12월 – 2024년 6월
-  # abstract: "TODO — paste the published paper abstract here, if any."
+  # abstract: "TODO: paste the published paper abstract here, if any."
 
 - id: campus-platform
   title: "University Campus Convenience Platform"
@@ -93,11 +107,11 @@
   type: design-research
   tags: ["Service Design", "Entrepreneurship", "Campus", "Patent"]
   accent: lavender
-  summary: "A platform system delivering convenience functions for university campus life — undergraduate project that resulted in a registered patent."
+  summary: "A platform system delivering convenience functions for university campus life. An undergraduate project that resulted in a registered patent."
   role: "Designer & Developer"
   award: "WAIKWITH Entrepreneurship Competition · Grand Prize"
   # 특허: 대학교 캠퍼스에서 편의 기능 제공 플랫폼 시스템 (Platform system for providing convenience function in university campus)
-  # abstract: "TODO — describe the platform, the problem it solves, and how it works."
+  # abstract: "TODO: describe the platform, the problem it solves, and how it works."
 
 - id: human-city-design-2021
   title: "Human City Design Workshop 2021"
@@ -107,6 +121,8 @@
   accent: mustard
   summary: "A studio workshop project exploring human-centered city design."
   role: "Designer"
+  collaborators: "Jeongeun Han, Yujin Lee, Hyunseo Shin (listed alphabetically by last name)"
+  advisor: "Yeoreum Lee"
   award: "Human City Design Student Workshop · Academic Award"
   # 정확한 프로젝트 이름·주제·과정은 추후 채울 것
   # abstract: "TODO"
@@ -120,9 +136,9 @@
   summary: "Scenarios, visuals, and interactions for distributing in-vehicle UI across multi-passenger experiences, validated through iterative UX prototypes."
   role: "UX Researcher & Designer"
   collaborators: "KAIST School of Computing, GM Korea"
-  # venue: "TODO — add venue if published"
+  # venue: "TODO: add venue if published"
   # 기간: 2024년 4월 – 2025년 9월
-  # abstract: "TODO — paste the published paper abstract here, if any."
+  # abstract: "TODO: paste the published paper abstract here, if any."
 
 - id: water-tree
   title: "Water Tree: A Bio-Inspired Water Generator"
@@ -130,11 +146,12 @@
   type: design-exploration
   tags: ["Industrial Design", "Sustainability", "Bio-inspired", "Water", "Concept"]
   accent: cobalt
-  summary: "A nature-inspired water generator — root robots, an artificial stem under negative pressure, and transpiring leaves harvest clean water for disaster zones, deserts, and Mars."
-  role: "Designer"
-  collaborators: "KAIST CIDR Lab. — Tek-Jin Nam, Suhyun Lim, Jisu Park, Jiwon Lee  /  zoslee studio — Youngho Lee, Kitak Lee, Changwoo Yun, Kitae Kim"
+  summary: "A nature-inspired water generator: root robots, an artificial stem under negative pressure, and transpiring leaves harvest clean water for disaster zones, deserts, and Mars."
+  cover: ../assets/projects/watertree.jpg
+  role: "Graphic Designer (Award Submission)"
+  collaborators: "KAIST CIDR Lab.: Tek-Jin Nam, Suhyun Lim, Jisu Park, Jiwon Lee  /  zoslee studio: Youngho Lee, Kitak Lee, Changwoo Yun, Kitae Kim"
   award: "iF Design Award 2025 · Product Concepts (Environmental Products)"
-  # abstract: "TODO — 식물의 수분 흡수·증산 메커니즘에서 출발한 컨셉 설명, 작동 원리, 적용 시나리오(재난지역/사막/저개발지역/화성)."
+  abstract: "How can we obtain clean water safely and efficiently in extreme environments? WATERTREE is a conceptual product inspired by nature's water acquisition and transpiration principles. It features root robots with microporous filters at their tips, an artificial stem generating negative pressure to draw water up, and leaves that vaporize water, while a condenser stores it in a tank. Developed in collaboration with engineers, this functional prototype aims to serve disaster zones, deserts, and underdeveloped regions, addressing urgent water needs. Ultimately, WATERTREE has potential as a vital device for sustainable water production on Mars."
   links:
     demo: "https://ifdesign.com/en/winner-ranking/project/water-tree/709602"
 
@@ -144,20 +161,40 @@
   type: design-exploration
   tags: ["Industrial Design", "Medical", "Non-electronic", "Sustainability"]
   accent: vermilion
-  summary: "A non-electronic oxygen generator — designed to deliver medical-grade oxygen without batteries or electrical infrastructure."
+  cover: ../assets/projects/oxynizer.png
+  summary: "A non-electronic oxygen generator designed to deliver medical-grade oxygen without batteries or electrical infrastructure."
   role: "Designer"
-  award: "James Dyson Award 2024 · Korea National Winner · International Top 20  /  IDEA · Bronze  /  KAIST Q-Day 2024 · Creativity & Talent Education Award"
-  # abstract: "TODO — describe the design problem, mechanism, and field context."
+  collaborators: "Jiwon Kim, Yeohyun Jung, Seung-Jun Lee, Kyeongho Park (listed alphabetically by last name)"
+  award: |-
+    James Dyson Award 2024 · Korea National Winner · International Top 20
+    IDEA · Bronze
+    KAIST Q-Day 2024 · Creativity & Talent Education Award
+  abstract: "A non-electric oxygen generator system composed of a universal hose system and sustainable filter materials. Oxynizer can be easily connected to various pumps, delivering oxygen to patients with a range of conditions, from mild breathlessness to chronic respiratory diseases. Its high compatibility, low maintenance, and intuitive operation make the Oxynizer a potential lifesaver for patients in developing countries with limited medical infrastructure."
+  gallery:
+    - src: ../assets/projects/oxynizer-ProjectImage1.png
+      alt: "Oxynizer project image 1"
+      width: half
+    - src: ../assets/projects/oxynizer-ProjectImage2.png
+      alt: "Oxynizer project image 2"
+      width: half
+    - src: ../assets/projects/oxynizer-ProjectImage4.png
+      alt: "Oxynizer project image 4"
+      width: half
+    - src: ../assets/projects/oxynizer-ProjectImage6.png
+      alt: "Oxynizer project image 6"
+      width: half
 
 - id: shamain
   title: "ShamAIn: Designing Superior Conversational AI Inspired by Shamanism"
   year: 2025
   type: design-research
+  cover: ../assets/projects/shamain.png
   tags: ["Conversational AI", "Superior AI", "Shamanism", "Research through Design"]
   accent: lavender
   summary: "A multi-modal conversational AI inspired by Korean shamanism, designed to be perceived as superior to humans and studied with 20 visitors over a six-week installation (research through design)."
-  role: "Co-Researcher"
-  collaborators: "Hyungjun Cho, Jiyeon Amy Seo, Chang-Min Kim, Tek-Jin Nam"
+  role: "Co-author"
+  authors: "Hyungjun Cho, Jiyeon Amy Seo, Jiwon Lee, Chang-Min Kim, Tek-Jin Nam"
+  advisor: "Tek-Jin Nam (KAIST)"
   venue: "CHI 2025"
   award: "Honorable Mention"
   abstract: "This paper presents the design process, outcomes, and installation of ShamAIn, a multi-modal embodiment of conversational AI inspired by the beliefs and symbols of Korean shamanism. Adopting a research through design approach, we offer an alternative perspective on conversational AI design, emphasizing perceived superiority. ShamAIn was developed based on strategies derived from investigating people's experiences with shamanistic counseling and rituals. We deployed the system in an exhibition room for six weeks, during which 20 participants made multiple visits to engage with ShamAIn. Through subsequent in-depth interviews, we found that participants felt a sense of awe toward ShamAIn and engaged in interactions with humility and respect. Our participants disclosed personal and profound concerns, reflecting deeply on the responses they received. Consequently, they relied on ShamAIn and formed relationships in which they received support. In the discussion, we present the design implications of conversational AI perceived as superior to humans, along with the ethical considerations involved in designing such AI."

@@ -3,7 +3,7 @@
 // practice, design studies, and design exploration. Design Issues, 24(3), 4–18.
 //
 // 세 정점이 카테고리 필터 역할을 하고, 중앙 점은 "all" 리셋이다.
-// `data-card[data-type=...]`를 토글해 그리드를 필터링한다 — FilterBar와 동일한 계약.
+// `data-card[data-type=...]`를 토글해 그리드를 필터링한다. FilterBar와 동일한 계약.
 
 interface Props {
   years?: number[];
@@ -21,7 +21,7 @@ const { years = [] } = Astro.props;
     <svg
       viewBox="0 0 480 480"
       role="group"
-      aria-label="Fallman's interaction design research triangle — click a vertex to filter"
+      aria-label="Fallman's interaction design research triangle, click a vertex to filter"
       class="w-full h-auto select-none"
     >
       <!-- ── 역삼각형 외곽 (꼭지점이 아래로) ──────────────────────────── -->
@@ -153,7 +153,7 @@ const { years = [] } = Astro.props;
     transform: scale(1.18);
   }
 
-  /* 정점 텍스트 — 두 줄: "Design" prefix (옅은 회색) + 카테고리 라벨 (강조) */
+  /* 정점 텍스트, 두 줄: "Design" prefix (옅은 회색) + 카테고리 라벨 (강조) */
   .vertex-prefix {
     font-family: 'JetBrains Mono', monospace;
     font-size: 9px;
@@ -236,6 +236,11 @@ const { years = [] } = Astro.props;
   function setActiveType(type: string) {
     // 같은 정점 다시 누르면 'all'로 리셋
     activeType = activeType === type && type !== 'all' ? 'all' : type;
+    // 'all' 은 연도 필터까지 함께 초기화한다
+    if (activeType === 'all') {
+      activeYear = '';
+      yearBtns.forEach((b) => b.setAttribute('aria-pressed', 'false'));
+    }
     triggers.forEach((g) => {
       g.setAttribute('aria-pressed', String(g.dataset.filterType === activeType));
     });

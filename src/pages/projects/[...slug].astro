@@ -16,20 +16,30 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const {
   title, year, type, tags, summary, accent, cover,
-  abstract, gallery,
-  role, collaborators, venue, award, links,
+  abstract, gallery, priorWork, journey,
+  role, authors, collaborators, advisor, venue, support, award, links,
 } = entry.data;
+
+// 여정 단계별 점 색상
+const journeyAccent = {
+  'design-practice':    'mustard',
+  'design-research':    'lavender',
+  'design-exploration': 'lime',
+} as const;
 
 const bg = accentBg[accent];
 const fg = accentFg[accent];
 
-// 메타 사이드바 — 값이 있는 항목만
+// 메타 사이드바: 값이 있는 항목만
 const metaItems = [
   { label: t('projects.year'),   value: String(year) },
   { label: t('projects.role'),   value: role          ?? null },
+  { label: t('projects.authors'), value: authors       ?? null },
   { label: t('projects.collab'), value: collaborators ?? null },
+  { label: t('projects.advisor'), value: advisor      ?? null },
   { label: t('projects.venue'),  value: venue         ?? null },
-  { label: t('projects.award'),  value: award         ?? null },
+  { label: t('projects.support'), value: support       ?? null },
+  { label: t('projects.award'), value: award         ?? null },
 ].filter((item): item is { label: string; value: string } => item.value !== null);
 
 const linkItems = [
@@ -46,7 +56,7 @@ const prev = allProjects[currentIdx + 1];
 const next = allProjects[currentIdx - 1];
 ---
 
-<BaseLayout title={`${title} — Jiwon`} description={summary}>
+<BaseLayout title={`${title} | Jiwon`} description={summary}>
   <!-- ── 컴팩트 헤더: 메타 위주, 텍스트는 최소 ──────────────────────────── -->
   <header class={`${bg} ${fg}`}>
     <div class="site-container py-12 md:py-16">
@@ -69,12 +79,12 @@ const next = allProjects[currentIdx - 1];
     </div>
   </header>
 
-  <!-- ── 커버 이미지 — 페이지의 시각적 앵커 ─────────────────────────────── -->
+  <!-- ── 커버 이미지: 페이지의 시각적 앵커 ─────────────────────────────── -->
   {cover && (
     <figure class="bg-fg/5">
       <Image
         src={cover}
-        alt={`${title} — cover`}
+        alt={`${title} cover`}
         class="w-full max-h-[80vh] object-cover"
         widths={[640, 1024, 1440, 1920]}
         sizes="100vw"
@@ -86,6 +96,26 @@ const next = allProjects[currentIdx - 1];
   <section class="site-container py-16 grid md:grid-cols-[1fr_260px] gap-12 items-start">
     <!-- 좌: 논문이 있으면 abstract만, 없으면 summary 한 줄 -->
     <div class="max-w-2xl">
+      {journey && journey.length > 0 && (
+        <div class="mb-12">
+          <p class="font-mono text-xs text-fg-muted uppercase tracking-wider mb-4">
+            {t('project.journey')}
+          </p>
+          <ol class="space-y-3">
+            {journey.map((step) => (
+              <li class="flex items-baseline gap-3">
+                <span class={`inline-block w-2.5 h-2.5 rounded-full shrink-0 ${accentBg[journeyAccent[step.type]]}`} aria-hidden="true"></span>
+                <span class="font-mono text-xs text-fg-muted uppercase tracking-wider w-44 shrink-0">
+                  {typeLabel[step.type]}
+                </span>
+                <span class="font-mono text-xs text-fg-muted w-10 shrink-0">{step.year}</span>
+                <span class="text-sm text-fg">{step.label}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      )}
+
       {abstract ? (
         <>
           <p class="font-mono text-xs text-fg-muted uppercase tracking-wider mb-3">
@@ -100,6 +130,32 @@ const next = allProjects[currentIdx - 1];
           {summary}
         </p>
       )}
+
+      {priorWork && (
+        <div class="mt-12 pt-8 border-t border-fg/10">
+          <p class="font-mono text-xs text-fg-muted uppercase tracking-wider mb-3">
+            {t('project.priorWork')}
+          </p>
+          <h2 class="font-display font-medium text-xl leading-snug text-fg">
+            {priorWork.paper ? (
+              <a href={priorWork.paper} target="_blank" rel="noopener noreferrer"
+                 class="hover:text-accent-cobalt transition-colors duration-200">
+                {priorWork.title}
+              </a>
+            ) : priorWork.title}
+          </h2>
+          {(priorWork.venue || priorWork.year) && (
+            <p class="mt-2 font-mono text-xs text-fg-muted uppercase tracking-wider">
+              {[priorWork.venue, priorWork.year].filter(Boolean).join(' · ')}
+            </p>
+          )}
+          {priorWork.abstract && (
+            <p class="mt-4 text-base leading-relaxed text-fg-muted">
+              {priorWork.abstract}
+            </p>
+          )}
+        </div>
+      )}
     </div>
 
     <!-- 우: 메타 사이드바 -->
@@ -109,7 +165,7 @@ const next = allProjects[currentIdx - 1];
           <dt class="font-mono text-xs text-fg-muted uppercase tracking-wider mb-1">
             {label}
           </dt>
-          <dd class="text-sm font-medium">{value}</dd>
+          <dd class="text-sm font-medium whitespace-pre-line">{value}</dd>
         </div>
       ))}
 
@@ -133,7 +189,7 @@ const next = allProjects[currentIdx - 1];
     </aside>
   </section>
 
-  <!-- ── 이미지 갤러리 — 메인 콘텐츠 ─────────────────────────────────────── -->
+  <!-- ── 이미지 갤러리: 메인 콘텐츠 ─────────────────────────────────────── -->
   {gallery && gallery.length > 0 && (
     <section class="site-container pb-20">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">

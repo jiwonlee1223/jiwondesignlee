@@ -16,12 +16,12 @@ const href = `/projects/${entry.id}/`;
   href={href}
   class="group flex flex-col focus:outline-none focus-visible:ring-2 focus-visible:ring-fg"
 >
-  <!-- 이미지 영역 — cover 있으면 이미지, 없으면 accent 컬러 블록 (폴백) -->
+  <!-- 이미지 영역: cover 있으면 이미지, 없으면 accent 컬러 블록 (폴백) -->
   <div class="relative aspect-[4/3] overflow-hidden bg-fg/5">
     {cover ? (
       <Image
         src={cover}
-        alt={`${title} — cover`}
+        alt={`${title} cover`}
         class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
         widths={[400, 640, 960, 1280]}
         sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -39,7 +39,7 @@ const href = `/projects/${entry.id}/`;
     )}
   </div>
 
-  <!-- 메타 + 제목 — 텍스트는 최소 -->
+  <!-- 메타 + 제목: 텍스트는 최소 -->
   <div class="pt-4">
     <div class="flex flex-wrap items-center gap-3 font-mono text-xs text-fg-muted uppercase tracking-wider">
       <span>{year}</span>
@@ -53,7 +53,7 @@ const href = `/projects/${entry.id}/`;
     </h3>
 
     {award && (
-      <p class="mt-2 font-mono text-[11px] text-accent-vermilion">
+      <p class="mt-2 font-mono text-[11px] text-accent-vermilion whitespace-pre-line">
         ★ {award}
       </p>
     )}

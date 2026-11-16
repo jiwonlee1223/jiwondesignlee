@@ -12,8 +12,11 @@ export const ui = {
   // project detail (메타 라벨)
   'projects.year':    'Year',
   'projects.role':    'Role',
+  'projects.authors': 'Authors',
   'projects.collab':  'Collaborators',
-  'projects.venue':   'Venue',
+  'projects.advisor': 'Advisor',
+  'projects.venue':   'Presented at',
+  'projects.support': 'Supported by',
   'projects.award':   'Award',
   // about
   'about.heading': 'About',
@@ -27,6 +30,8 @@ export const ui = {
   'project.github':    'GitHub',
   'project.demo':      'Live demo',
   'project.abstract':  'Abstract',
+  'project.priorWork': 'Prior work',
+  'project.journey':   'Journey',
   'project.next':      'Next',
   'project.prev':      'Previous',
   // misc
