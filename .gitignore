@@ -1,0 +1,13 @@
+# dependencies
+node_modules/
+
+# Astro generated cache
+.astro/
+
+# macOS
+.DS_Store
+
+# env / logs
+.env
+.env.*
+*.log
