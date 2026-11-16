@@ -53,6 +53,35 @@
   links:
     paper: "https://dl.acm.org/doi/10.1145/3772318.3791750"
 
+- id: oxynizer
+  title: "Oxynizer: A Non-Electronic Oxygen Generator"
+  year: 2024
+  type: design-exploration
+  tags: ["Industrial Design", "Medical", "Non-electronic", "Sustainability"]
+  accent: vermilion
+  cover: ../assets/projects/oxynizer.png
+  summary: "A non-electronic oxygen generator designed to deliver medical-grade oxygen without batteries or electrical infrastructure."
+  role: "Designer"
+  collaborators: "Jiwon Kim, Yeohyun Jung, Seung-Jun Lee, Kyeongho Park (listed alphabetically by last name)"
+  award: |-
+    James Dyson Award 2024 · Korea National Winner · International Top 20
+    IDEA · Bronze
+    KAIST Q-Day 2024 · Creativity & Talent Education Award
+  abstract: "A non-electric oxygen generator system composed of a universal hose system and sustainable filter materials. Oxynizer can be easily connected to various pumps, delivering oxygen to patients with a range of conditions, from mild breathlessness to chronic respiratory diseases. Its high compatibility, low maintenance, and intuitive operation make the Oxynizer a potential lifesaver for patients in developing countries with limited medical infrastructure."
+  gallery:
+    - src: ../assets/projects/oxynizer-ProjectImage1.png
+      alt: "Oxynizer project image 1"
+      width: half
+    - src: ../assets/projects/oxynizer-ProjectImage2.png
+      alt: "Oxynizer project image 2"
+      width: half
+    - src: ../assets/projects/oxynizer-ProjectImage4.png
+      alt: "Oxynizer project image 4"
+      width: half
+    - src: ../assets/projects/oxynizer-ProjectImage6.png
+      alt: "Oxynizer project image 6"
+      width: half
+
 - id: blabu
   title: "Blabu: Empathic Storytelling Agent of a Car Blackbox Utilizing a Data-Processor-LLM Pipeline"
   year: 2024
@@ -154,35 +183,6 @@
   abstract: "How can we obtain clean water safely and efficiently in extreme environments? WATERTREE is a conceptual product inspired by nature's water acquisition and transpiration principles. It features root robots with microporous filters at their tips, an artificial stem generating negative pressure to draw water up, and leaves that vaporize water, while a condenser stores it in a tank. Developed in collaboration with engineers, this functional prototype aims to serve disaster zones, deserts, and underdeveloped regions, addressing urgent water needs. Ultimately, WATERTREE has potential as a vital device for sustainable water production on Mars."
   links:
     demo: "https://ifdesign.com/en/winner-ranking/project/water-tree/709602"
-
-- id: oxynizer
-  title: "Oxynizer: A Non-Electronic Oxygen Generator"
-  year: 2024
-  type: design-exploration
-  tags: ["Industrial Design", "Medical", "Non-electronic", "Sustainability"]
-  accent: vermilion
-  cover: ../assets/projects/oxynizer.png
-  summary: "A non-electronic oxygen generator designed to deliver medical-grade oxygen without batteries or electrical infrastructure."
-  role: "Designer"
-  collaborators: "Jiwon Kim, Yeohyun Jung, Seung-Jun Lee, Kyeongho Park (listed alphabetically by last name)"
-  award: |-
-    James Dyson Award 2024 · Korea National Winner · International Top 20
-    IDEA · Bronze
-    KAIST Q-Day 2024 · Creativity & Talent Education Award
-  abstract: "A non-electric oxygen generator system composed of a universal hose system and sustainable filter materials. Oxynizer can be easily connected to various pumps, delivering oxygen to patients with a range of conditions, from mild breathlessness to chronic respiratory diseases. Its high compatibility, low maintenance, and intuitive operation make the Oxynizer a potential lifesaver for patients in developing countries with limited medical infrastructure."
-  gallery:
-    - src: ../assets/projects/oxynizer-ProjectImage1.png
-      alt: "Oxynizer project image 1"
-      width: half
-    - src: ../assets/projects/oxynizer-ProjectImage2.png
-      alt: "Oxynizer project image 2"
-      width: half
-    - src: ../assets/projects/oxynizer-ProjectImage4.png
-      alt: "Oxynizer project image 4"
-      width: half
-    - src: ../assets/projects/oxynizer-ProjectImage6.png
-      alt: "Oxynizer project image 6"
-      width: half
 
 - id: shamain
   title: "ShamAIn: Designing Superior Conversational AI Inspired by Shamanism"
