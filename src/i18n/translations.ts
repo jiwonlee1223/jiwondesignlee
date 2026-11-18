@@ -32,6 +32,7 @@ export const ui = {
   'project.abstract':  'Abstract',
   'project.priorWork': 'Prior work',
   'project.journey':   'Journey',
+  'project.confidential': 'Confidential',
   'project.next':      'Next',
   'project.prev':      'Previous',
   // misc

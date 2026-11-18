@@ -14,7 +14,7 @@ const { years = [] } = Astro.props;
 
 <section
   id="filter-bar"
-  class="site-container py-12 md:py-16"
+  class="site-container py-8 md:py-16"
   aria-label="Filter projects"
 >
   <figure class="mx-auto w-full max-w-md md:max-w-lg">
@@ -43,6 +43,7 @@ const { years = [] } = Astro.props;
         aria-pressed="true"
         aria-label="Show all projects"
       >
+        <circle class="hit" cx="240" cy="181" r="36" />
         <circle cx="240" cy="181" r="22" />
         <text x="240" y="185" text-anchor="middle">all</text>
       </g>
@@ -58,6 +59,7 @@ const { years = [] } = Astro.props;
       >
         <text class="vertex-prefix" x="56" y="24" text-anchor="middle">Design</text>
         <text class="vertex-label"  x="56" y="44" text-anchor="middle">Practices</text>
+        <circle class="hit" cx="56" cy="72" r="36" />
         <circle cx="56" cy="72" r="18" />
       </g>
 
@@ -72,6 +74,7 @@ const { years = [] } = Astro.props;
       >
         <text class="vertex-prefix" x="424" y="24" text-anchor="middle">Design</text>
         <text class="vertex-label"  x="424" y="44" text-anchor="middle">Studies</text>
+        <circle class="hit" cx="424" cy="72" r="36" />
         <circle cx="424" cy="72" r="18" />
       </g>
 
@@ -84,13 +87,14 @@ const { years = [] } = Astro.props;
         aria-pressed="false"
         aria-label="Filter by Design Explorations"
       >
+        <circle class="hit" cx="240" cy="400" r="36" />
         <circle cx="240" cy="400" r="18" />
         <text class="vertex-prefix" x="240" y="428" text-anchor="middle">Design</text>
         <text class="vertex-label"  x="240" y="448" text-anchor="middle">Explorations</text>
       </g>
     </svg>
 
-    <figcaption class="mt-3 text-center font-mono text-[10px] text-fg-muted opacity-60">
+    <figcaption class="mt-3 text-center font-mono text-[11px] md:text-[10px] text-fg-muted opacity-60">
       Daniel Fallman (2008) · interaction design research triangle
     </figcaption>
   </figure>
@@ -98,14 +102,14 @@ const { years = [] } = Astro.props;
   <!-- ── 연도 칩 (보조 필터) ──────────────────────────────────────────── -->
   {years.length > 0 && (
     <div
-      class="mt-10 flex flex-wrap items-center justify-center gap-2"
+      class="mt-6 md:mt-10 flex flex-wrap items-center justify-center gap-2"
       role="group"
       aria-label="Filter by year"
     >
       {years.map((year) => (
         <button
           data-filter-year={year}
-          class="filter-btn-year font-mono text-xs px-3 py-1.5 border border-fg/20 text-fg-muted
+          class="filter-btn-year font-mono text-xs px-3.5 py-2.5 md:px-3 md:py-1.5 border border-fg/20 text-fg-muted
                  hover:border-fg hover:text-fg transition-colors duration-200
                  aria-pressed:border-fg aria-pressed:bg-fg aria-pressed:text-bg"
           aria-pressed="false"
@@ -119,8 +123,8 @@ const { years = [] } = Astro.props;
 
 <style>
   /* ── 정점 원: 기본 / hover / focus / active(=aria-pressed) ─────────── */
-  .vertex circle,
-  .vertex-reset circle {
+  .vertex circle:not(.hit),
+  .vertex-reset circle:not(.hit) {
     fill: #FAFAF7;          /* bg */
     stroke: #111111;        /* fg */
     stroke-width: 1.5;
@@ -139,18 +143,32 @@ const { years = [] } = Astro.props;
     outline: none;
   }
 
-  .vertex:hover circle,
-  .vertex:focus-visible circle,
-  .vertex-reset:hover circle,
-  .vertex-reset:focus-visible circle {
+  .vertex:hover circle:not(.hit),
+  .vertex:focus-visible circle:not(.hit),
+  .vertex-reset:hover circle:not(.hit),
+  .vertex-reset:focus-visible circle:not(.hit) {
     fill: #111111;
     transform: scale(1.18);
   }
 
-  .vertex[aria-pressed='true'] circle,
-  .vertex-reset[aria-pressed='true'] circle {
+  .vertex[aria-pressed='true'] circle:not(.hit),
+  .vertex-reset[aria-pressed='true'] circle:not(.hit) {
     fill: #111111;
     transform: scale(1.18);
+  }
+
+  /* 투명 터치 영역 (모바일 최소 탭 크기 확보) */
+  .hit {
+    fill: transparent;
+    stroke: none;
+    cursor: pointer;
+  }
+
+  /* 모바일: SVG가 ~0.7배로 줄어드므로 글자를 키워 실제 크기 ~11px 확보 */
+  @media (max-width: 639px) {
+    .vertex-prefix { font-size: 13px; }
+    .vertex-label  { font-size: 17px; }
+    .vertex-reset text { font-size: 13px; }
   }
 
   /* 정점 텍스트, 두 줄: "Design" prefix (옅은 회색) + 카테고리 라벨 (강조) */
@@ -232,6 +250,14 @@ const { years = [] } = Astro.props;
         activeType === 'all' || (card.dataset.type ?? '').split(' ').includes(activeType);
       const yearMatch = !activeYear || card.dataset.year === activeYear;
       card.hidden = !(typeMatch && yearMatch);
+    });
+
+    // 'Earlier work' 영역: 보이는 카드 수를 갱신하고, 없으면 영역 자체를 숨긴다
+    document.querySelectorAll<HTMLDetailsElement>('[data-archive]').forEach((box) => {
+      const visible = box.querySelectorAll('[data-card]:not([hidden])').length;
+      const count = box.querySelector('[data-archive-count]');
+      if (count) count.textContent = String(visible);
+      (box.closest('section') as HTMLElement).hidden = visible === 0;
     });
   }
 

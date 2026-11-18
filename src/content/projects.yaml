@@ -6,6 +6,7 @@
 #   (스키마 정의: src/content/config.ts)
 # - 슬러그 상세 페이지(/projects/<id>/) 내용도 전부 여기서 수정한다.
 #   id 가 곧 URL 슬러그가 된다.
+# - `archived: true` 를 붙이면 홈 그리드 대신 하단 "Earlier work" 접이식 영역에 나온다.
 # - 선택 필드(role/collaborators/venue/award/abstract/links/cover/gallery)는
 #   필요할 때만 채우고, 비워두면 페이지에서 자동으로 숨겨진다.
 # - 이미지(cover/gallery)는 현재 미사용. 추가할 때는 별도 검증 필요(README/플랜 참고).
@@ -14,6 +15,7 @@
 - id: cits-hmi
   title: "Driver HMI Service Scenario and Blueprint Development for C-ITS"
   year: 2023
+  archived: true
   type: design-practice
   tags: ["Service Design", "Driver HMI", "Automotive", "C-ITS"]
   accent: mustard
@@ -30,7 +32,7 @@
   title: "Reminiscences of Futures (RoF): Designing and Studying Encounters with Embodied, AI-Generated Future Selves"
   year: 2026
   type: design-research
-  tags: ["AI Agents", "Embodied AI", "Future Self", "Reflection"]
+  tags: ["Embodied AI", "Future Self", "Research through Design", "Reflective Technology", "Human-AI Interaction", "Self Replication"]
   accent: lavender
   cover: ../assets/projects/rof.png
   summary: "Designing and studying how people encounter embodied, AI-generated representations of their future selves."
@@ -122,17 +124,19 @@
   title: "AI Home Communication Design"
   year: 2024
   type: design-exploration
-  tags: ["Generative AI", "Prompting Framework", "Home Appliances", "LLMOps"]
+  tags: ["Industry–Academia", "Generative AI", "Prompting Framework", "Home Appliances", "LLMOps"]
   accent: lime
-  summary: "User interaction design for home appliances, centered on a Generative AI prompting framework for natural human–device communication."
+  summary: "An industry–academia project with Samsung Electronics. A Generative AI prompting framework that lets people talk to home appliances naturally."
   role: "UX Designer"
-  collaborators: "KAIST, Samsung Electronics"
+  collaborators: "KAIST, Samsung Electronics (industry–academia project)"
+  confidential: true
   # 기간: 2023년 12월 – 2024년 6월
   # abstract: "TODO: paste the published paper abstract here, if any."
 
 - id: campus-platform
   title: "University Campus Convenience Platform"
   year: 2023
+  archived: true
   type: design-research
   tags: ["Service Design", "Entrepreneurship", "Campus", "Patent"]
   accent: lavender
@@ -145,6 +149,7 @@
 - id: human-city-design-2021
   title: "Human City Design Workshop 2021"
   year: 2021
+  archived: true
   type: design-exploration
   tags: ["Urban Design", "Workshop", "Speculative"]
   accent: mustard
@@ -165,6 +170,7 @@
   summary: "Scenarios, visuals, and interactions for distributing in-vehicle UI across multi-passenger experiences, validated through iterative UX prototypes."
   role: "UX Researcher & Designer"
   collaborators: "KAIST School of Computing, GM Korea"
+  confidential: true
   # venue: "TODO: add venue if published"
   # 기간: 2024년 4월 – 2025년 9월
   # abstract: "TODO: paste the published paper abstract here, if any."

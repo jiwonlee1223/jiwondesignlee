@@ -17,7 +17,7 @@ const { entry } = Astro.props;
 const {
   title, year, type, tags, summary, accent, cover,
   abstract, gallery, priorWork, journey,
-  role, authors, collaborators, advisor, venue, support, award, links,
+  confidential, role, authors, collaborators, advisor, venue, support, award, links,
 } = entry.data;
 
 // 여정 단계별 점 색상
@@ -57,47 +57,68 @@ const next = allProjects[currentIdx - 1];
 ---
 
 <BaseLayout title={`${title} | Jiwon`} description={summary}>
-  <!-- ── 컴팩트 헤더: 메타 위주, 텍스트는 최소 ──────────────────────────── -->
-  <header class={`${bg} ${fg}`}>
-    <div class="site-container py-12 md:py-16">
-      <a
-        href="/"
-        class="font-mono text-xs opacity-60 hover:opacity-100 transition-opacity mb-8 inline-block"
-      >
-        {t('project.backToAll')}
-      </a>
+  <!-- ── 상단: 뒤로가기 → 제목/메타 → 커버 이미지(화면 폭 전체) ───────── -->
+  <div class="site-container pt-6 md:pt-8">
+    <a
+      href="/"
+      class="font-mono text-xs text-fg-muted hover:text-fg transition-colors inline-block py-2"
+    >
+      {t('project.backToAll')}
+    </a>
+  </div>
 
-      <div class="flex flex-wrap gap-4 font-mono text-xs opacity-60 uppercase tracking-widest mb-4">
-        <span>{year}</span>
-        <span>{typeLabel[type]}</span>
-        {tags.map((tag) => <span>{tag}</span>)}
-      </div>
-
-      <h1 class="font-display font-bold text-display-lg max-w-4xl leading-tight">
-        {title}
-      </h1>
+  <header class="site-container pt-4 md:pt-6">
+    <div class="flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-xs text-fg-muted uppercase tracking-widest mb-4">
+      <span class={`inline-block w-2.5 h-2.5 rounded-full ${bg}`} aria-hidden="true"></span>
+      <span>{year}</span>
+      <span>{typeLabel[type]}</span>
     </div>
+
+    <h1 class="font-display font-bold text-display-lg max-w-4xl leading-tight text-fg">
+      {title}
+    </h1>
+
+    {tags.length > 0 && (
+      <ul class="flex flex-wrap gap-2 mt-6" role="list" aria-label="Tags">
+        {tags.map((tag) => (
+          <li class="px-3 py-1.5 rounded-full border border-fg/20 text-xs leading-none text-fg-muted">
+            {tag}
+          </li>
+        ))}
+      </ul>
+    )}
   </header>
 
-  <!-- ── 커버 이미지: 페이지의 시각적 앵커 ─────────────────────────────── -->
-  {cover && (
-    <figure class="bg-fg/5">
-      <Image
-        src={cover}
-        alt={`${title} cover`}
-        class="w-full max-h-[80vh] object-cover"
-        widths={[640, 1024, 1440, 1920]}
-        sizes="100vw"
-      />
-    </figure>
-  )}
+  <figure class="mt-8 md:mt-10">
+    {cover ? (
+      <div class="relative w-full aspect-[4/3] md:aspect-[16/9] max-h-[85vh] overflow-hidden bg-fg/5">
+        <Image
+          src={cover}
+          alt={`${title} cover`}
+          class="absolute inset-0 w-full h-full object-cover"
+          widths={[640, 1024, 1440, 1920, 2560]}
+          sizes="100vw"
+          loading="eager"
+        />
+      </div>
+    ) : (
+      <div
+        class={`${bg} ${fg} w-full aspect-[4/3] md:aspect-[16/9] max-h-[85vh] flex items-end p-6 md:p-10`}
+        aria-hidden="true"
+      >
+        <span class="font-display font-bold text-display-md leading-tight opacity-50 max-w-3xl">
+          {title}
+        </span>
+      </div>
+    )}
+  </figure>
 
   <!-- ── 메타 + (있을 경우) abstract ────────────────────────────────────── -->
-  <section class="site-container py-16 grid md:grid-cols-[1fr_260px] gap-12 items-start">
+  <section class="site-container py-10 md:py-14 grid md:grid-cols-[1fr_260px] gap-10 md:gap-12 items-start">
     <!-- 좌: 논문이 있으면 abstract만, 없으면 summary 한 줄 -->
     <div class="max-w-2xl">
       {journey && journey.length > 0 && (
-        <div class="mb-12">
+        <div class="mb-10 md:mb-12">
           <p class="font-mono text-xs text-fg-muted uppercase tracking-wider mb-4">
             {t('project.journey')}
           </p>
@@ -105,11 +126,13 @@ const next = allProjects[currentIdx - 1];
             {journey.map((step) => (
               <li class="flex items-baseline gap-3">
                 <span class={`inline-block w-2.5 h-2.5 rounded-full shrink-0 ${accentBg[journeyAccent[step.type]]}`} aria-hidden="true"></span>
-                <span class="font-mono text-xs text-fg-muted uppercase tracking-wider w-44 shrink-0">
-                  {typeLabel[step.type]}
-                </span>
-                <span class="font-mono text-xs text-fg-muted w-10 shrink-0">{step.year}</span>
-                <span class="text-sm text-fg">{step.label}</span>
+                <div class="flex flex-wrap sm:flex-nowrap items-baseline gap-x-3 gap-y-1 min-w-0">
+                  <span class="font-mono text-xs text-fg-muted uppercase tracking-wider sm:w-44 sm:shrink-0">
+                    {typeLabel[step.type]}
+                  </span>
+                  <span class="font-mono text-xs text-fg-muted sm:w-10 sm:shrink-0">{step.year}</span>
+                  <span class="text-sm text-fg w-full sm:w-auto">{step.label}</span>
+                </div>
               </li>
             ))}
           </ol>
@@ -125,9 +148,15 @@ const next = allProjects[currentIdx - 1];
             {abstract}
           </p>
         </>
-      ) : (
+      ) : confidential ? null : (
         <p class="text-lg leading-relaxed text-fg-muted">
           {summary}
+        </p>
+      )}
+
+      {confidential && (
+        <p class="font-mono text-xs text-fg-muted">
+          {t('project.confidential')}
         </p>
       )}
 
@@ -159,7 +188,7 @@ const next = allProjects[currentIdx - 1];
     </div>
 
     <!-- 우: 메타 사이드바 -->
-    <aside class="border-l border-fg/15 pl-6 space-y-6 md:sticky md:top-20">
+    <aside class="border-t md:border-t-0 md:border-l border-fg/15 pt-8 md:pt-0 md:pl-6 space-y-6 md:sticky md:top-20">
       {metaItems.map(({ label, value }) => (
         <div>
           <dt class="font-mono text-xs text-fg-muted uppercase tracking-wider mb-1">
@@ -191,7 +220,7 @@ const next = allProjects[currentIdx - 1];
 
   <!-- ── 이미지 갤러리: 메인 콘텐츠 ─────────────────────────────────────── -->
   {gallery && gallery.length > 0 && (
-    <section class="site-container pb-20">
+    <section class="site-container pb-12 md:pb-20">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         {gallery.map((item) => (
           <figure class={item.width === 'full' ? 'md:col-span-2' : 'md:col-span-1'}>
@@ -220,7 +249,7 @@ const next = allProjects[currentIdx - 1];
   <!-- ── prev / next 내비게이션 ────────────────────────────────────────── -->
   <nav
     aria-label="Project navigation"
-    class="site-container border-t border-fg/10 py-10 flex justify-between gap-8 text-sm"
+    class="site-container border-t border-fg/10 py-8 md:py-10 flex justify-between gap-4 md:gap-8 text-sm"
   >
     {prev ? (
       <a

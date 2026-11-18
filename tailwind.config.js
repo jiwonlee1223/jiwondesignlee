@@ -30,7 +30,7 @@ export default {
 
       fontSize: {
         // clamp: 모바일~데스크탑 유동 스케일
-        'display-xl': ['clamp(3rem, 8vw, 6.5rem)',  { lineHeight: '0.95', letterSpacing: '-0.03em' }],
+        'display-xl': ['clamp(2.5rem, 8vw, 6.5rem)',  { lineHeight: '0.95', letterSpacing: '-0.03em' }],
         'display-lg': ['clamp(2rem, 5vw, 4rem)',    { lineHeight: '1.0',  letterSpacing: '-0.02em' }],
         'display-md': ['clamp(1.4rem, 3vw, 2.2rem)',{ lineHeight: '1.1',  letterSpacing: '-0.015em' }],
       },

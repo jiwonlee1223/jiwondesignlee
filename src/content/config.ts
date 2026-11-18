@@ -62,6 +62,8 @@ const projects = defineCollection({
       advisor:       z.string().optional(),   // 지도교수 (예: "Tek-Jin Nam (KAIST)")
       venue:         z.string().optional(),   // 발표 학회 (연구 프로젝트용)
       support:       z.string().optional(),   // 후원/지원 기관 (예: "LG CX Center")
+      confidential:  z.boolean().optional(),  // true면 상세 페이지에 'details are confidential' 안내 노출 (산학 과제 등)
+      archived:      z.boolean().optional(),  // true면 홈에서 'Earlier work' 접이식 영역으로 이동
       award:         z.string().optional(),   // 수상 내역 (예: "James Dyson Award 2024 · Korea Winner")
       links: z
         .object({

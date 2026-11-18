@@ -17,7 +17,7 @@ const current = Astro.url.pathname;
     aria-label="Main navigation"
   >
     <!-- 로고 (JW 모노그램), 홈으로 이동 -->
-    <a href="/" class="flex items-center" aria-label="Jiwon, home">
+    <a href="/" class="flex items-center py-3 pr-3" aria-label="Jiwon, home">
       <img
         src="/logo.png"
         alt="Jiwon"
@@ -28,13 +28,13 @@ const current = Astro.url.pathname;
     </a>
 
     <!-- 링크 목록 -->
-    <ul class="hidden md:flex items-center gap-6 text-sm" role="list">
+    <ul class="flex items-center gap-5 md:gap-6 text-sm" role="list">
       {navLinks.map(({ href, label }) => (
         <li>
           <a
             href={href}
             aria-current={current === href ? 'page' : undefined}
-            class="text-fg-muted hover:text-fg transition-colors aria-[current=page]:text-fg aria-[current=page]:font-medium"
+            class="inline-block py-3 text-fg-muted hover:text-fg transition-colors aria-[current=page]:text-fg aria-[current=page]:font-medium"
           >
             {label}
           </a>

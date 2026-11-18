@@ -100,7 +100,14 @@
     width: 100%;
     max-width: theme('maxWidth.site');
     margin-inline: auto;
-    padding-inline: clamp(4rem, 12vw, 10rem);
+    /* 모바일은 좁은 고정 여백, md 이상에서 기존 유동 여백 */
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 640px) {
+    .site-container { padding-inline: 2.5rem; }
+  }
+  @media (min-width: 768px) {
+    .site-container { padding-inline: clamp(4rem, 12vw, 10rem); }
   }
 }
 

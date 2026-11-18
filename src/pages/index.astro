@@ -6,10 +6,15 @@ import CategoryTriangle from '@/components/CategoryTriangle.astro';
 import { t } from '@/i18n/utils';
 
 const allProjects = await getCollection('projects');
-const projects = allProjects.sort((a, b) => b.data.year - a.data.year);
+const sorted = allProjects.sort((a, b) => b.data.year - a.data.year);
+const projects = sorted.filter((p) => !p.data.archived);
+const archived = sorted.filter((p) => p.data.archived);
 
-// 삼각형 아래의 보조 연도 칩에 넘길 연도 목록 (중복 제거, 내림차순)
+// 삼각형 아래의 보조 연도 칩에 넘길 연도 목록 (최근 작업 기준, 중복 제거, 내림차순)
 const years = [...new Set(projects.map((p) => p.data.year))].sort((a, b) => b - a);
+
+const typeOf = (entry: (typeof sorted)[number]) =>
+  [...new Set([entry.data.type, ...(entry.data.journey ?? []).map((s) => s.type)])].join(' ');
 
 const heroLines = t('home.heroHeadline').split('\n');
 ---
@@ -19,7 +24,7 @@ const heroLines = t('home.heroHeadline').split('\n');
   description={t('home.heroSub')}
 >
   <!-- ── Hero ───────────────────────────────────────────────────────────── -->
-  <section class="site-container pt-20 pb-8">
+  <section class="site-container pt-10 md:pt-20 pb-4 md:pb-8">
     <h1 class="font-display font-bold text-display-xl text-fg max-w-4xl">
       {heroLines.map((line, i) => (
         <span class="block">
@@ -28,7 +33,7 @@ const heroLines = t('home.heroHeadline').split('\n');
       ))}
     </h1>
 
-    <p class="mt-6 font-sans text-lg text-fg-muted max-w-xl leading-relaxed">
+    <p class="mt-5 md:mt-6 font-sans text-base md:text-lg text-fg-muted max-w-xl leading-relaxed">
       {t('home.heroSub')}
     </p>
 
@@ -44,19 +49,42 @@ const heroLines = t('home.heroHeadline').split('\n');
   {projects.length > 0 && (
     <section
       aria-label="All projects"
-      class="site-container pb-24"
+      class="site-container pb-16 md:pb-24"
     >
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10 md:gap-y-12">
         {projects.map((entry) => (
           <div
             data-card
-            data-type={[...new Set([entry.data.type, ...(entry.data.journey ?? []).map((s) => s.type)])].join(' ')}
+            data-type={typeOf(entry)}
             data-year={entry.data.year}
           >
             <ProjectCard entry={entry} />
           </div>
         ))}
       </div>
+    </section>
+  )}
+
+  <!-- ── Earlier work: 오래된 프로젝트는 접어서 보관 ──────────────────── -->
+  {archived.length > 0 && (
+    <section aria-label="Earlier work" class="site-container pb-16 md:pb-24 -mt-6 md:-mt-8">
+      <details data-archive class="group border-t border-fg/10 pt-6">
+        <summary
+          class="flex items-center gap-3 cursor-pointer select-none list-none py-2
+                 font-mono text-xs uppercase tracking-wider text-fg-muted hover:text-fg transition-colors
+                 [&::-webkit-details-marker]:hidden"
+        >
+          <span class="inline-block transition-transform duration-200 group-open:rotate-90" aria-hidden="true">▸</span>
+          Earlier work (<span data-archive-count>{archived.length}</span>)
+        </summary>
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10 md:gap-y-12">
+          {archived.map((entry) => (
+            <div data-card data-type={typeOf(entry)} data-year={entry.data.year}>
+              <ProjectCard entry={entry} />
+            </div>
+          ))}
+        </div>
+      </details>
     </section>
   )}
 </BaseLayout>
